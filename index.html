@@ -27,16 +27,16 @@
 <a name="what-is-this-page-about" class="anchor" href="#what-is-this-page-about"><span class="octicon octicon-link"></span></a>What is this page about?</h1>
 
 <p>This page presents some research artifacts that were spawn from the Secure
-Smargrid project with the Emering &amp; Mobile Network Techonologies group (EMNTG)
-at NIST.  We believe that sharing our code on GitHub we will make it more
-accessible and foster more contribution.  Because the code derives from our
-research, it should be considered as experimental and sometimes incomplete.
-Also, some contribution are meant to be used together.</p>
+Smargrid project with the Emerging &amp; Mobile Network Technologies Group (EMNTG)
+at NIST. We believe that sharing our code on GitHub we will make it more
+accessible and foster more contribution. Because the code derives from our
+research, it should be considered as experimental and is sometimes incomplete.
+Also, some contribution are meant to be used in conjunction.</p>
 
 <p>Please note that this page is not the official page of the Emerging &amp; Mobile
 Network Technologies group at NIST. It only presents a small subset of our
-group's contributions. People interested to find more about our group can go on
-<a href="http://www.nist.gov/itl/antd/emntg/index.cfm">our official website</a>.</p>
+group's contributions and efforts. People interested to learn more about our
+group can go on <a href="http://www.nist.gov/itl/antd/emntg/index.cfm">our official website</a>.</p>
 
 <h1>
 <a name="projects" class="anchor" href="#projects"><span class="octicon octicon-link"></span></a>Projects</h1>
@@ -50,13 +50,83 @@ group's contributions. People interested to find more about our group can go on
 
 <p><em>A IEEE 802.15.4 PHY layer emulator over Ethernet links</em></p>
 
-<p>TBA</p>
+<p>This is an emulator for IEEE 802.15.4 networks over Ethernet links. The emulator
+takes a node map as an input and computes for each packets it receives which
+nodes in the simulation should actually receive it. Frame are encapsulated within UDP
+messages. The emulator is optimized for speed and tries to provide real time
+emulation of IEEE 802.15.4 networks.</p>
+
+<p>The emulator currently only works with modified Contiki "native" nodes.
+Connector for Linux nodes is possible but has not be written yet.</p>
 
 <h3>
 <a name="wiredto154-logger" class="anchor" href="#wiredto154-logger"><span class="octicon octicon-link"></span></a><a href="https://github.com/nist-emntg/wiredto154-logger">wiredto154-logger</a>
 </h3>
 
 <p><em>Logging tool for wiredto154 simulations</em></p>
+
+<p>Nodes participating in a wiredto154 can use the emulator's facility to report
+logging message. The logger will read them in real time. The logger also
+contains a real time viewer that indicates the status of the nodes.</p>
+
+<h2>
+<a name="implementation-of-the-rpl-routing-protocol-rfc-6550" class="anchor" href="#implementation-of-the-rpl-routing-protocol-rfc-6550"><span class="octicon octicon-link"></span></a>Implementation of the RPL routing protocol (RFC 6550)</h2>
+
+<h3>
+<a name="simplerpl" class="anchor" href="#simplerpl"><span class="octicon octicon-link"></span></a><a href="https://github.com/nist-emntg/simpleRPL">simpleRPL</a>
+</h3>
+
+<p><em>A linux-based implementation of the Routing Protocol for Low-Power and Lossy Networks (RPL)</em></p>
+
+<p>This is an implementation of the Routing Protocol for Low-Power and Lossy
+Networks. This routing protocol has been designed for low power nodes with
+low memory capacity.</p>
+
+<p>This implementation can operate across multiple interfaces (where links can be
+of different type), which makes it useful for bridge-like devices.</p>
+
+<h3>
+<a name="routing" class="anchor" href="#routing"><span class="octicon octicon-link"></span></a><a href="https://github.com/nist-emntg/Routing">Routing</a>
+</h3>
+
+<p><em>a libnl-route binding for python</em></p>
+
+<p>One of the support library of simpleRPL. It is a python wrapper for the libnl
+(a netlink library). It enables the python code to add and remove networks
+routes, addresses, etc.</p>
+
+<h3>
+<a name="rplicmp" class="anchor" href="#rplicmp"><span class="octicon octicon-link"></span></a><a href="https://github.com/nist-emntg/RplIcmp">RplIcmp</a>
+</h3>
+
+<p><em>A python module for handling ICMP messaging for the RPL protocol</em></p>
+
+<p>One of the support library for simpleRPL. It is a python wrapper for sending
+and receiving ICMPv6 messages.</p>
+
+<h2>
+<a name="linux-related-code" class="anchor" href="#linux-related-code"><span class="octicon octicon-link"></span></a>Linux related code</h2>
+
+<h3>
+<a name="virtual-ieee802154-serial" class="anchor" href="#virtual-ieee802154-serial"><span class="octicon octicon-link"></span></a><a href="https://github.com/nist-emntg/virtual-ieee802154-serial">virtual-ieee802154-serial</a>
+</h3>
+
+<p><em>Virtual tunnel interface for the IEEE 802.15.4 serial protocol</em></p>
+
+<p>Certain IEEE 802.15.4 devices, like the RedBee Econotag, present a serial-like
+interface for the Linux kernel to connect to.  This software provides a virtual
+serial interface, so that the Linux kernel can setup a virtual IEEE 802.15.4
+device on top of it. Once set up, all the traffic that go though this interface
+is encapsulated into UDP packets.</p>
+
+<h3>
+<a name="linux802154-regression-tests" class="anchor" href="#linux802154-regression-tests"><span class="octicon octicon-link"></span></a><a href="https://github.com/nist-emntg/linux802154-regression-tests">linux802154-regression-tests</a>
+</h3>
+
+<p><em>Regression tests for the Linux IEEE 802.15.4 and 6LoWPAN stack</em></p>
+
+<p>This basic regression tests suite ensures that new patches within the Linux
+kernel do not introduce regressions on basic features IEEE 802.15.4/6LoWPAN features.</p>
 
 <h2>
 <a name="works-related-to-the-redbee-econotag" class="anchor" href="#works-related-to-the-redbee-econotag"><span class="octicon octicon-link"></span></a>Works related to the RedBee Econotag</h2>
@@ -69,36 +139,10 @@ group's contributions. People interested to find more about our group can go on
 
 <p><em>Serial port reading with timestamp information (serialreadts)</em></p>
 
-<h2>
-<a name="implementation-of-the-rpl-routing-protocol-rfc-6550" class="anchor" href="#implementation-of-the-rpl-routing-protocol-rfc-6550"><span class="octicon octicon-link"></span></a>Implementation of the RPL routing protocol (RFC 6550)</h2>
-
-<h3>
-<a name="simplerpl" class="anchor" href="#simplerpl"><span class="octicon octicon-link"></span></a><a href="https://github.com/nist-emntg/simpleRPL">simpleRPL</a>
-</h3>
-
-<p><em>A linux-based implementation of the Routing Protocol for Low-Power and Lossy Networks (RPL)</em></p>
-
-<p>TBA</p>
-
-<h3>
-<a name="routing" class="anchor" href="#routing"><span class="octicon octicon-link"></span></a><a href="https://github.com/nist-emntg/Routing">Routing</a>
-</h3>
-
-<p><em>a libnl-route binding for python</em></p>
-
-<p>TBA</p>
-
-<h3>
-<a name="rplicmp" class="anchor" href="#rplicmp"><span class="octicon octicon-link"></span></a><a href="https://github.com/nist-emntg/RplIcmp">RplIcmp</a>
-</h3>
-
-<p><em>A python module for handling ICMP messaging for the RPL protocol</em></p>
-
-<h3>
-<a name="virtual-ieee802154-serial" class="anchor" href="#virtual-ieee802154-serial"><span class="octicon octicon-link"></span></a><a href="https://github.com/nist-emntg/virtual-ieee802154-serial">virtual-ieee802154-serial</a>
-</h3>
-
-<p><em>Virtual tunnel interface for the IEEE 802.15.4 serial protocol</em></p>
+<p>When reading logs from the Econotag serial interface, it is sometimes
+useful to see exactly when a message occurred. This small tool append a
+timestamp at the beginning of each new lines thus making reading logs very
+easy.</p>
 
 <h3>
 <a name="linux802154-serialdev" class="anchor" href="#linux802154-serialdev"><span class="octicon octicon-link"></span></a><a href="https://github.com/nist-emntg/linux802154-serialdev">linux802154-serialdev</a>
@@ -106,15 +150,9 @@ group's contributions. People interested to find more about our group can go on
 
 <p><em>Friendly fork of Mariano Alvira's linux serial driver firmware for the Redbee Econotag</em></p>
 
-<p>TBA</p>
-
-<h3>
-<a name="linux802154-regression-tests" class="anchor" href="#linux802154-regression-tests"><span class="octicon octicon-link"></span></a><a href="https://github.com/nist-emntg/linux802154-regression-tests">linux802154-regression-tests</a>
-</h3>
-
-<p><em>Regression tests for the Linux IEEE 802.15.4 and 6LoWPAN stack</em></p>
-
-<p>TBA</p>
+<p>A slightly modified version of the RedBee Econotag firmware that works along
+a modified IEEE 802.15.4 serial driver for Linux. It activates extra feature,
+such as the auto-acknowledgment.</p>
 
 <h2>
 <a name="contiki-related-code" class="anchor" href="#contiki-related-code"><span class="octicon octicon-link"></span></a>Contiki related code</h2>
@@ -125,7 +163,9 @@ group's contributions. People interested to find more about our group can go on
 
 <p><em>A simple ECC certificate library</em></p>
 
-<p>TBA</p>
+<p>A small certificate library for sensor networks. This library aims to minimize
+the RAM and ROM footprint as well as the energy consumption. It uses a
+non-standard but very compact and lightweight certificate format.</p>
 
 <h1>
 <a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h1>
